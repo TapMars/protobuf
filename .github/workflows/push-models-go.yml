@@ -17,13 +17,12 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Pushes test folder
-      uses: crykn/copy_folder_to_another_repo_action@v1.0.6
+      uses: cpina/github-action-push-to-another-repository@master
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
-        source_folder: 'gen/models-go/models/v1'
-        destination_repo: 'TapMars/protobuf-models-go'
-        destination_branch: 'main'
-        user_email: 'nmarler@outlook.com'
-        user_name: 'nicky-marler'
-        commit_msg: 'Workflow generated'
+        source-directory: 'gen/models-go/models/v1'
+        destination-github-username: 'TapMars'
+        destination-repository-name: 'protobuf-models-go'
+        user-email: 'nmarler@outlook.com'
+        commit-message: 'Workflow generated'
