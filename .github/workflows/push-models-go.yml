@@ -24,5 +24,6 @@ jobs:
         source-directory: 'gen/models-go/models/v1'
         destination-github-username: 'TapMars'
         destination-repository-name: 'protobuf-models-go'
+        target-branch: 'main'
         user-email: 'nmarler@outlook.com'
         commit-message: 'Workflow generated'
