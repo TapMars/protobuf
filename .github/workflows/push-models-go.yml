@@ -23,6 +23,7 @@ jobs:
       with:
         source_folder: 'gen/models-go/models/v1'
         destination_repo: 'TapMars/protobuf-models-go'
+        destination_branch: 'main'
         user_email: 'nmarler@outlook.com'
         user_name: 'nicky-marler'
         commit_msg: 'Workflow generated'
