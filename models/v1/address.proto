@@ -1,0 +1,11 @@
+syntax = "proto3";
+option go_package = "github.com/TapMars/protobuf-models-go/v1";
+package TapMars.models.v1;
+
+message Address {
+  string line1 = 1;
+  string line2 = 2;
+  string city = 3;
+  string state = 4;
+  string zip = 5;
+}

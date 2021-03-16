@@ -1,0 +1,10 @@
+syntax = "proto3";
+option go_package = "github.com/TapMars/protobuf-models-go/v1";
+package TapMars.models.v1;
+
+message HappyHour {
+  string start = 1;
+  string end = 2;
+  bool fromOpen = 3;
+  bool toClose = 4;
+}

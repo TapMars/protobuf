@@ -1,0 +1,58 @@
+syntax = "proto3";
+option go_package = "github.com/TapMars/protobuf-userFirestore-go/v1";
+package TapMars.userFirestore.v1;
+
+import "models/v1/address.proto";
+import "models/v1/day.proto";
+import "models/v1/happy_hour.proto";
+import "models/v1/item_type.proto";
+import "models/v1/success_response.proto";
+
+service UserFirestore {
+  rpc GetFavoriteBusinesses(UserRequest) returns (FavoriteBusinessesResponse) {}
+  rpc GetFavoriteItems(UserRequest) returns (FavoriteItemsResponse) {}
+  rpc AddFavoriteBusiness(UserChangeRequest) returns (models.v1.SuccessResponse) {}
+  rpc DeleteFavoriteBusiness(UserChangeRequest) returns (models.v1.SuccessResponse) {}
+  rpc AddFavoriteItem(UserChangeRequest) returns (models.v1.SuccessResponse) {}
+  rpc DeleteFavoriteItem(UserChangeRequest) returns (models.v1.SuccessResponse) {}
+}
+
+message FavoriteItem {
+  string id = 1;
+  string name = 2;
+  string businessId = 3;
+  string businessName = 4;
+  string detail = 5;
+  models.v1.Day day = 6;
+  models.v1.HappyHour happyHour = 7;
+  models.v1.ItemType type = 8;
+  string dateCreated = 9;
+}
+
+message FavoriteBusiness {
+  string id = 1;
+  string name = 2;
+  models.v1.Address address = 3;
+  string dateCreated = 4;
+}
+
+message FavoriteItemsResponse {
+  repeated FavoriteItem items = 1;
+}
+
+message FavoriteBusinessesResponse {
+  repeated FavoriteBusiness businesses = 1;
+}
+
+message UserRequest {
+  string userId = 1;
+}
+
+message UserChangeRequest {
+  string userId = 1;
+  string documentId = 2;
+  bool notify = 3;
+}
+
+
+
