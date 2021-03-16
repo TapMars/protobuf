@@ -1,0 +1,28 @@
+# This is a basic workflow that is manually triggered
+
+name: Push Models-Go
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  copy-file:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Pushes test folder
+      uses: crykn/copy_folder_to_another_repo_action@v1.0.6
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source_folder: 'gen/models-go/models/v1'
+        destination_repo: 'TapMars/protobuf-models-go'
+        user_email: 'nmarler@outlook.com'
+        user_name: 'nicky-marler'
+        commit_msg: 'Workflow generated'
