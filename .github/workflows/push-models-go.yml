@@ -19,7 +19,7 @@ jobs:
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
-        source-directory: 'gen/models-go/models/v1'
+        source-directory: 'gen/models-go/models'
         destination-github-username: 'nicky-marler'
         destination-repository-username: 'TapMars'
         destination-repository-name: 'protobuf-models-go'
