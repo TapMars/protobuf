@@ -22,7 +22,7 @@ jobs:
         source-directory: 'gen/userFirestore-go/userFirestore/v1'
         destination-github-username: 'nicky-marler'
         destination-repository-username: 'TapMars'
-        destination-repository-name: 'protobuf-models-go'
+        destination-repository-name: 'protobuf-userFirestore-go'
         target-branch: 'main'
         user-email: 'nmarler@outlook.com'
         commit-message: 'Workflow generated'
