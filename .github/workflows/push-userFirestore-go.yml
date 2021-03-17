@@ -1,6 +1,6 @@
 #This is a basic workflow that is manually triggered
 
-name: Push-UserFirestore-Go-v1
+name: Push-UserFirestore-Go
 
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
@@ -19,7 +19,7 @@ jobs:
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
-        source-directory: 'gen/userFirestore-go/userFirestore/v1'
+        source-directory: 'gen/userFirestore-go/userFirestore'
         destination-github-username: 'nicky-marler'
         destination-repository-username: 'TapMars'
         destination-repository-name: 'protobuf-userFirestore-go'
