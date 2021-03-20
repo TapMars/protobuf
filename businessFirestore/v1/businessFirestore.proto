@@ -1,0 +1,6 @@
+syntax = "proto3";
+option go_package = "github.com/TapMars/protobuf-businessFirestore-go/v1";
+package TapMars.businessFirestore.v1;
+
+service BusinessFirestore {
+}

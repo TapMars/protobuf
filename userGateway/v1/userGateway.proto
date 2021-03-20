@@ -1,0 +1,29 @@
+syntax = "proto3";
+option go_package = "github.com/TapMars/protobuf-userGateway/v1";
+package TapMars.userGateway.v1;
+
+import "userFirestore/v1/userFirestore.proto";
+import "productSearch/v1/productSearch.proto";
+
+import "models/v1/void_request.proto";
+import "models/v1/success_response.proto";
+
+
+service UserGateway {
+  rpc GetFavoriteBusinesses(models.v1.VoidRequest) returns (userFirestore.v1.FavoriteBusinessesResponse) {}
+  rpc GetFavoriteItems(models.v1.VoidRequest) returns (userFirestore.v1.FavoriteItemsResponse) {}
+  rpc AddFavoriteBusiness(ChangeRequest) returns (models.v1.SuccessResponse) {}
+  rpc DeleteFavoriteBusiness(ChangeRequest) returns (models.v1.SuccessResponse) {}
+  rpc AddFavoriteItem(ChangeRequest) returns (models.v1.SuccessResponse) {}
+  rpc DeleteFavoriteItem(ChangeRequest) returns (models.v1.SuccessResponse) {}
+
+  rpc SearchItems(productSearch.v1.SearchItemRequest) returns (productSearch.v1.SearchItemResponse) {}
+  rpc GetItem(productSearch.v1.ItemRequest) returns (productSearch.v1.ItemResponse) {}
+  rpc GetBusiness(productSearch.v1.BusinessRequest) returns (productSearch.v1.BusinessResponse) {}
+}
+
+
+message ChangeRequest {
+  string documentId = 1;
+  bool notify = 2;
+}

@@ -1,0 +1,89 @@
+syntax = "proto3";
+option go_package = "github.com/TapMars/protobuf-productSearch/v1";
+package TapMars.productSearch.v1;
+
+import "models/v1/address.proto";
+import "models/v1/day.proto";
+import "models/v1/operational_hours.proto";
+
+service ProductSearch {
+  rpc SearchItems(SearchItemRequest) returns (SearchItemResponse) {}
+  rpc GetItem(ItemRequest) returns (ItemResponse) {}
+  rpc GetBusiness(BusinessRequest) returns (BusinessResponse) {}
+}
+
+message Item {
+  string id = 1;
+  string name = 2;
+  string detail = 3;
+  int32 favorites = 4;
+  models.v1.Day day = 5;
+  Distance distance = 6;
+  models.v1.OperationalHours operationalHours = 7;
+  string dateCreated = 8;
+  string lastModified = 9;
+}
+
+message Business {
+  string id = 1;
+  string name = 2;
+  int32 favorites = 3;
+  models.v1.Address address = 4;
+  OperationalDays operationalDays = 5;
+  string dateCreated = 6;
+  string lastModified = 7;
+}
+
+message ItemRequest {
+  string id = 1;
+}
+
+message ItemResponse {
+  Item item = 1;
+}
+
+message SearchItemRequest {
+  GeoPoint geoPoint = 1;
+  FilterDistance filterDistance = 2;
+}
+
+message SearchItemResponse {
+  repeated Item items = 1;
+}
+
+message BusinessRequest {
+  string id = 1;
+}
+
+message BusinessResponse {
+  Business business = 1;
+}
+
+enum FilterDistance {
+  One = 0;
+  Five = 1;
+  Twenty = 2;
+}
+
+message GeoPoint {
+  double latitude = 1;
+  double longitude = 2;
+}
+
+message OperationalDays {
+  repeated models.v1.OperationalHours monday = 1;
+  repeated models.v1.OperationalHours tuesday = 2;
+  repeated models.v1.OperationalHours wednesday = 3;
+  repeated models.v1.OperationalHours thursday = 4;
+  repeated models.v1.OperationalHours friday = 5;
+  repeated models.v1.OperationalHours saturday = 6;
+  repeated models.v1.OperationalHours sunday = 7;
+}
+
+message Distance {
+  double distanceMi = 1;
+  double distanceKm = 2;
+}
+
+
+
