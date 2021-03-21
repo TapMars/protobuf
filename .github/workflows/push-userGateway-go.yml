@@ -1,0 +1,28 @@
+#This is a basic workflow that is manually triggered
+
+name: push-userGateway-go
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+  workflow_dispatch:
+
+jobs:
+  push-folder:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Copies and pushes generated folder
+      uses: cpina/github-action-push-to-another-repository@master
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source-directory: 'gen/userGateway-go/userGateway'
+        destination-github-username: 'nicky-marler'
+        destination-repository-username: 'TapMars'
+        destination-repository-name: 'protobuf-userGateway-go'
+        target-branch: 'main'
+        user-email: 'nmarler@outlook.com'
+        commit-message: 'Workflow generated'
