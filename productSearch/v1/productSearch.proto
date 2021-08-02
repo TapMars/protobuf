@@ -60,9 +60,10 @@ message BusinessResponse {
 }
 
 enum FilterDistance {
-  One = 0;
-  Five = 1;
-  Twenty = 2;
+  None = 0;
+  One = 1;
+  Five = 2;
+  Twenty = 3;
 }
 
 message GeoPoint {

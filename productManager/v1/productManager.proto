@@ -1,0 +1,115 @@
+syntax = "proto3";
+option go_package = "github.com/TapMars/protobuf-productManager/v1";
+package TapMars.productManager.v1;
+
+import "models/v1/address.proto";
+import "models/v1/day.proto";
+import "models/v1/firestore_interface.proto";
+import "models/v1/filter_distance.proto";
+import "models/v1/order_by.proto";
+
+service ProductManager {
+  rpc GetItem(GetItemRequest) returns (GetItemResponse) {}
+  rpc AddItem(AddItemRequest) returns (AddItemResponse) {}
+  rpc DeleteItem(DeleteItemRequest) returns (DeleteItemResponse) {}
+
+  rpc SearchBusiness(SearchBusinessesRequest) returns (SearchBusinessesResponse) {}
+  rpc GetBusiness(GetBusinessRequest) returns (GetBusinessResponse) {}
+  rpc AddBusiness(AddBusinessRequest) returns (AddBusinessResponse) {}
+  rpc UpdateBusiness(UpdateBusinessRequest) returns (UpdateBusinessResponse) {}
+  rpc DeleteBusiness(DeleteBusinessRequest) returns (DeleteBusinessResponse) {}
+}
+
+
+message GetItemRequest {
+  string id = 1;
+}
+
+message GetItemResponse {
+  models.v1.FirestoreItem firestoreItem = 1;
+}
+
+message AddItemRequest {
+  string name = 1;
+  string businessId = 2;
+  repeated string type = 3;
+  string detail = 4;
+  models.v1.Day day = 5;
+  string start = 6;
+  string end = 7;
+  bool fromOpen = 8;
+  bool toClose = 9;  
+}
+
+message AddItemResponse {
+  string newId = 1;
+}
+
+message DeleteItemRequest {
+  string id = 1;
+}
+
+message DeleteItemResponse {
+  bool success = 1;
+}
+
+message SearchBusinessesRequest {
+  string name = 1;
+  double latitude = 2;
+  double longitude = 3;
+  models.v1.FilterDistance filterDistance = 4;
+  models.v1.OrderBy orderBy = 5;
+}
+
+message SearchBusinessesResponse {
+  repeated models.v1.FirestoreBusiness firestoreBusiness = 1;
+}
+
+message GetBusinessRequest {
+  string id = 1;
+}
+
+message GetBusinessResponse {
+  models.v1.FirestoreBusiness FirestoreBusinesss = 1;
+}
+
+message AddBusinessRequest {
+  string name = 1;
+  models.v1.OperationalDay monday = 2;
+  models.v1.OperationalDay tuesday = 3;
+  models.v1.OperationalDay wednesday = 4;
+  models.v1.OperationalDay thursday = 5;
+  models.v1.OperationalDay friday = 6;
+  models.v1.OperationalDay saturday = 7;
+  models.v1.OperationalDay sunday = 8;
+  models.v1.Address address = 9;
+}
+
+message AddBusinessResponse {
+  string id = 1;
+}
+
+message UpdateBusinessRequest {
+  string id = 1;
+  string name = 2;
+  models.v1.OperationalDay monday = 3;
+  models.v1.OperationalDay tuesday = 4;
+  models.v1.OperationalDay wednesday = 5;
+  models.v1.OperationalDay thursday = 6;
+  models.v1.OperationalDay friday = 7;
+  models.v1.OperationalDay saturday = 8;
+  models.v1.OperationalDay sunday = 9;
+  models.v1.Address address = 10;
+}
+
+message UpdateBusinessResponse {
+  bool success = 1;
+}
+
+message DeleteBusinessRequest {
+  string id = 1;
+}
+
+message DeleteBusinessResponse {
+  bool success = 1;
+}

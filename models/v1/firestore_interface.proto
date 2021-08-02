@@ -1,0 +1,56 @@
+syntax = "proto3";
+option go_package = "github.com/TapMars/protobuf-models-go/v1";
+package TapMars.models.v1;
+
+import "models/v1/address.proto";
+import "models/v1/day.proto";
+
+message FirestoreItem {
+    string id = 1;
+    string name = 2;
+    repeated string type = 3;
+    string businessId = 4;
+    string businessName = 5;
+    string detail = 6;
+    int32 favorites = 7;
+    models.v1.Day day = 8;
+    bool bleeds = 9;
+    string start = 10;
+    string end = 11;
+    bool fromOpen = 12;
+    bool toClose = 13;
+    string h3index6 = 14;
+    string h3index7 = 15;
+    string h3index8 = 16;
+    string h3index15 = 17;
+    string dateCreated = 18;
+    string lastModified = 19;
+    
+  }
+
+  message FirestoreBusiness {
+    string id = 1;
+    string name = 2;
+    int32 favorites = 3;
+    OperationalDay monday = 4;
+    OperationalDay tuesday = 5;
+    OperationalDay wednesday = 6;
+    OperationalDay thursday = 7;
+    OperationalDay friday = 8;
+    OperationalDay saturday = 9;
+    OperationalDay sunday = 10;
+    models.v1.Address address = 11;
+    string h3index6 = 12;
+    string h3index7 = 13;
+    string h3index8 = 14;
+    string h3index15 = 15;
+    string dateCreated = 16;
+    string lastModified = 17;
+  }
+  
+  message OperationalDay {
+    string start = 1;
+    string end = 2;
+    bool bleeds = 3;
+    bool isClosed = 4;
+  }

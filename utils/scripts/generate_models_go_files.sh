@@ -15,3 +15,4 @@ protoc --proto_path=. --go_out=gen/models-go --go_opt=paths=source_relative $SER
 protoc --proto_path=. --go_out=gen/models-go --go_opt=paths=source_relative $SERVICE_PATH/operational_hours.proto
 protoc --proto_path=. --go_out=gen/models-go --go_opt=paths=source_relative $SERVICE_PATH/success_response.proto
 protoc --proto_path=. --go_out=gen/models-go --go_opt=paths=source_relative $SERVICE_PATH/void_request.proto
+protoc --proto_path=. --go_out=gen/models-go --go_opt=paths=source_relative $SERVICE_PATH/firestore_interface.proto

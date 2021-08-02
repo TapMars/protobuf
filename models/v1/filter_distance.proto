@@ -1,0 +1,10 @@
+syntax = "proto3";
+option go_package = "github.com/TapMars/protobuf-models-go/v1";
+package TapMars.models.v1;
+
+enum FilterDistance {
+  None = 0;
+  One = 1;
+  Five = 2;
+  Twenty = 3;
+}

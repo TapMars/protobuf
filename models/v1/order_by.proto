@@ -1,0 +1,11 @@
+syntax = "proto3";
+option go_package = "github.com/TapMars/protobuf-models-go/v1";
+package TapMars.models.v1;
+
+enum OrderBy {
+  NameRevelance = 0;
+  Favorites = 1;
+  Recent = 2;
+  A_to_Z = 3;
+  Z_to_A = 4;
+}
