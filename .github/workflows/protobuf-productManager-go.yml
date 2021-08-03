@@ -2,33 +2,27 @@
 
 name: protobuf-productManager-go
 
-# Controls when the workflow will run
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
 on:
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   push-folder:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
-      - name: Push directory to another repository
-        uses: cpina/github-action-push-to-another-repository@v1.3
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-        with:
+    - name: Copies and pushes generated folder
+      uses: cpina/github-action-push-to-another-repository@master
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
         source-directory: 'gen/productManager-go/productManager'
         destination-github-username: 'nicky-marler'
-        destination-repository-name: 'protobuf-productManager-go'
-        user-email: 'nmarler@outlook.com'
         destination-repository-username: 'TapMars'
+        destination-repository-name: 'protobuf-productManager-go'
         target-branch: 'main'
-        commit-message: 'Action generated'
+        user-email: 'nmarler@outlook.com'
+        commit-message: 'Workflow generated'
