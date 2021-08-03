@@ -2,12 +2,6 @@ syntax = "proto3";
 option go_package = "github.com/TapMars/protobuf-productManager/v1";
 package TapMars.productManager.v1;
 
-import "models/v1/address.proto";
-import "models/v1/day.proto";
-import "models/v1/firestore_interface.proto";
-import "models/v1/filter_distance.proto";
-import "models/v1/order_by.proto";
-
 service ProductManager {
   rpc GetItem(GetItemRequest) returns (GetItemResponse) {}
   rpc AddItem(AddItemRequest) returns (AddItemResponse) {}
@@ -26,7 +20,7 @@ message GetItemRequest {
 }
 
 message GetItemResponse {
-  models.v1.FirestoreItem firestoreItem = 1;
+  FirestoreItem firestoreItem = 1;
 }
 
 message AddItemRequest {
@@ -34,7 +28,7 @@ message AddItemRequest {
   string businessId = 2;
   repeated string type = 3;
   string detail = 4;
-  models.v1.Day day = 5;
+  Day day = 5;
   string start = 6;
   string end = 7;
   bool fromOpen = 8;
@@ -57,12 +51,12 @@ message SearchBusinessesRequest {
   string name = 1;
   double latitude = 2;
   double longitude = 3;
-  models.v1.FilterDistance filterDistance = 4;
-  models.v1.OrderBy orderBy = 5;
+  FilterDistance filterDistance = 4;
+  OrderBy orderBy = 5;
 }
 
 message SearchBusinessesResponse {
-  repeated models.v1.FirestoreBusiness firestoreBusiness = 1;
+  repeated FirestoreBusiness firestoreBusiness = 1;
 }
 
 message GetBusinessRequest {
@@ -70,19 +64,19 @@ message GetBusinessRequest {
 }
 
 message GetBusinessResponse {
-  models.v1.FirestoreBusiness FirestoreBusinesss = 1;
+  FirestoreBusiness FirestoreBusinesss = 1;
 }
 
 message AddBusinessRequest {
   string name = 1;
-  models.v1.OperationalDay monday = 2;
-  models.v1.OperationalDay tuesday = 3;
-  models.v1.OperationalDay wednesday = 4;
-  models.v1.OperationalDay thursday = 5;
-  models.v1.OperationalDay friday = 6;
-  models.v1.OperationalDay saturday = 7;
-  models.v1.OperationalDay sunday = 8;
-  models.v1.Address address = 9;
+  OperationalDay monday = 2;
+  OperationalDay tuesday = 3;
+  OperationalDay wednesday = 4;
+  OperationalDay thursday = 5;
+  OperationalDay friday = 6;
+  OperationalDay saturday = 7;
+  OperationalDay sunday = 8;
+  Address address = 9;
 }
 
 message AddBusinessResponse {
@@ -92,14 +86,14 @@ message AddBusinessResponse {
 message UpdateBusinessRequest {
   string id = 1;
   string name = 2;
-  models.v1.OperationalDay monday = 3;
-  models.v1.OperationalDay tuesday = 4;
-  models.v1.OperationalDay wednesday = 5;
-  models.v1.OperationalDay thursday = 6;
-  models.v1.OperationalDay friday = 7;
-  models.v1.OperationalDay saturday = 8;
-  models.v1.OperationalDay sunday = 9;
-  models.v1.Address address = 10;
+  OperationalDay monday = 3;
+  OperationalDay tuesday = 4;
+  OperationalDay wednesday = 5;
+  OperationalDay thursday = 6;
+  OperationalDay friday = 7;
+  OperationalDay saturday = 8;
+  OperationalDay sunday = 9;
+  Address address = 10;
 }
 
 message UpdateBusinessResponse {
@@ -112,4 +106,87 @@ message DeleteBusinessRequest {
 
 message DeleteBusinessResponse {
   bool success = 1;
+}
+
+message FirestoreItem {
+  string id = 1;
+  string name = 2;
+  repeated string type = 3;
+  string businessId = 4;
+  string businessName = 5;
+  string detail = 6;
+  int32 favorites = 7;
+  Day day = 8;
+  bool bleeds = 9;
+  string start = 10;
+  string end = 11;
+  bool fromOpen = 12;
+  bool toClose = 13;
+  string h3index6 = 14;
+  string h3index7 = 15;
+  string h3index8 = 16;
+  string h3index15 = 17;
+  string dateCreated = 18;
+  string lastModified = 19;
+  
+}
+
+message FirestoreBusiness {
+  string id = 1;
+  string name = 2;
+  int32 favorites = 3;
+  OperationalDay monday = 4;
+  OperationalDay tuesday = 5;
+  OperationalDay wednesday = 6;
+  OperationalDay thursday = 7;
+  OperationalDay friday = 8;
+  OperationalDay saturday = 9;
+  OperationalDay sunday = 10;
+  Address address = 11;
+  string h3index6 = 12;
+  string h3index7 = 13;
+  string h3index8 = 14;
+  string h3index15 = 15;
+  string dateCreated = 16;
+  string lastModified = 17;
+}
+
+message OperationalDay {
+  string start = 1;
+  string end = 2;
+  bool bleeds = 3;
+  bool isClosed = 4;
+}
+
+enum Day {
+  Monday = 0;
+  Tuesday = 1;
+  Wednesday = 2;
+  Thursday = 3;
+  Friday = 4;
+  Saturday = 5;
+  Sunday = 6;
+}
+
+message Address {
+  string line1 = 1;
+  string line2 = 2;
+  string city = 3;
+  string state = 4;
+  string zip = 5;
+}
+
+enum FilterDistance {
+  None = 0;
+  One = 1;
+  Five = 2;
+  Twenty = 3;
+}
+
+enum OrderBy {
+  NameRevelance = 0;
+  Favorites = 1;
+  Recent = 2;
+  A_to_Z = 3;
+  Z_to_A = 4;
 }
